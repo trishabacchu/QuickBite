@@ -1,0 +1,28 @@
+{
+  "name": "quickbite-food-ordering",
+  "version": "1.0.0",
+  "private": true,
+  "description": "QuickBite - online food ordering and delivery lab project using React, Express, MongoDB, and Cassandra",
+  "type": "module",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:logs": "docker compose logs -f",
+    "init:db": "npm --prefix backend run db:init",
+    "seed": "npm --prefix backend run seed",
+    "backend": "npm --prefix backend run dev",
+    "frontend": "npm --prefix frontend run dev",
+    "test": "npm --prefix backend run test",
+    "test:watch": "npm --prefix backend run test:watch",
+    "build": "npm --prefix frontend run build",
+    "verify": "node scripts/verify.mjs"
+  },
+  "engines": {
+    "node": ">=20.19"
+  }
+}

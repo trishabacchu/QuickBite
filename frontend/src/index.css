@@ -1,0 +1,157 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Fraunces', ui-serif, Georgia, serif;
+
+  --color-brand-50: #fff4ee;
+  --color-brand-100: #ffe6d8;
+  --color-brand-200: #ffcbb1;
+  --color-brand-300: #ffa57f;
+  --color-brand-400: #fb7a4b;
+  --color-brand-500: #f45d2d;
+  --color-brand-600: #df3f14;
+  --color-brand-700: #b92e0f;
+  --color-brand-800: #932711;
+  --color-brand-900: #762512;
+
+  --color-ink-950: #211712;
+  --color-ink-900: #2f211a;
+  --color-ink-700: #5f4a3f;
+  --color-ink-500: #8a7469;
+
+  --color-cream-50: #fffdfb;
+  --color-cream-100: #fff8f3;
+  --color-cream-200: #faefe6;
+
+  --shadow-soft: 0 16px 50px -30px rgba(80, 39, 20, 0.35);
+  --shadow-card: 0 8px 30px -20px rgba(65, 32, 17, 0.4);
+}
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-brand-200) transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream-100 font-sans text-ink-900 antialiased;
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(255, 213, 184, 0.32), transparent 30rem),
+      radial-gradient(circle at 95% 15%, rgba(255, 232, 214, 0.4), transparent 26rem);
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: var(--color-brand-200);
+    color: var(--color-ink-950);
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    outline-offset: 3px;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--color-brand-500);
+  }
+
+  input,
+  textarea,
+  select {
+    color: var(--color-ink-950);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-brand-600 disabled:cursor-not-allowed disabled:bg-brand-200 disabled:text-white;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-bold text-ink-900 transition hover:border-brand-300 hover:bg-brand-50 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-3 py-2 text-sm font-semibold text-ink-700 transition hover:bg-black/5 hover:text-ink-950;
+  }
+
+  .field {
+    @apply w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm transition placeholder:text-ink-500 focus:border-brand-400 focus:outline-none focus:ring-4 focus:ring-brand-100 disabled:bg-stone-100;
+  }
+
+  .field-label {
+    @apply mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-ink-700;
+  }
+
+  .surface {
+    @apply rounded-3xl border border-black/[0.06] bg-white shadow-[var(--shadow-card)];
+  }
+
+  .page-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .eyebrow {
+    @apply text-xs font-extrabold uppercase tracking-[0.18em] text-brand-600;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-rise {
+  animation: rise-in 0.45s ease-out both;
+}
+
+.animate-toast {
+  animation: toast-in 0.2s ease-out both;
+}
+
+.hero-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+}
+
+.timeline-line::before {
+  content: '';
+  position: absolute;
+  left: 0.6875rem;
+  top: 1.5rem;
+  bottom: -0.75rem;
+  width: 1px;
+  background: #ead8cc;
+}
+
+.timeline-line:last-child::before {
+  display: none;
+}
